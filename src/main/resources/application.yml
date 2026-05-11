@@ -1,0 +1,63 @@
+spring:
+  web:
+    resources:
+      # 是否添加默认的ResourceHandler(/**等)
+      add-mappings: true
+  mvc:
+    servlet:
+      # 启动时就初始化DispatcherServlet
+      load-on-startup: 1
+  servlet:
+    multipart:
+      # 单次请求允许传输字节的最大值
+      max-request-size: 100MB
+      # 设置单个文件最大长度
+      max-file-size: 20MB
+      # 当文件达到多少时写入到临时目录, 而不是保留在内存中
+      file-size-threshold: 20MB
+  datasource:
+    url: jdbc:mysql://127.0.01:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    druid:
+      # 初始化时建立连接的个数
+      initial-size: 5
+      # 最大连接数量
+      max-active: 20
+      # 最小连接数量
+      min-idle: 5
+      # 获取连接等待的超时时间(毫秒), 10s
+      max-wait: 10000
+      # 获取连接时要不要对该连接进行有效性校验
+      test-on-borrow: false
+      # 归还连接时要不要对该连接进行有效性校验
+      test-on-return: false
+      # 申请连接时是否需要检查连接有效性(当连接的空闲时间大于timeBetweenEvictionRunsMillis才检查)
+      test-while-idle: true
+      # 用来检测连接是否有效的sql
+      validation-query: select 1
+      # Destroy线程执行的间隔时间, 当连接空闲时间大于min-evictable-idle-time-millis时会被关闭
+      # 也是test-while-idle的依据, 如果申请的连接空闲时间大于该参数, 需要检测连接是否有效
+      # 60s
+      time-between-eviction-runs-millis: 60000
+      # 连接保持空闲而不被驱逐的最小时间, 5分钟
+      min-evictable-idle-time-millis: 300000
+      # 慢查询
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-log-level: WARN
+          slow-sql-millis: 1000
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logicDeleteField: delFlg
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+logging:
+  level:
+    com.wangtao.mybatisplus.dao: debug
