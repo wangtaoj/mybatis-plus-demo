@@ -2,7 +2,6 @@ package com.wangtao.mybatisplus.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +34,6 @@ public class User extends BaseModel {
 
     private LocalDate birthday;
 
-    @TableLogic(value = "0", delval = "1")
     private Integer delFlg;
 
 }
